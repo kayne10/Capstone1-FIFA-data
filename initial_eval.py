@@ -14,22 +14,22 @@ cups["Runners-Up"].replace(to_replace="Germany FR", value="Germany",inplace=True
 cups["Third"].replace(to_replace="Germany FR", value="Germany",inplace=True)
 cups["Fourth"].replace(to_replace="Germany FR", value="Germany",inplace=True)
 
-Winnerdata = {}
+champs = {}
 listingYears = []
 for i in cups["Winner"]:
     listingYears.append(list(cups[cups["Winner"]==i]["Year"]))
 
 j = 0
 for k in cups["Winner"]:
-    if k not in Winnerdata.keys():
-        Winnerdata[k] = listingYears[j]
+    if k not in champs.keys():
+        champs[k] = listingYears[j]
     j = j + 1
 
-print(Winnerdata)
+print(champs)
 
 #getting required Winner data onto list for plot
-names = list(Winnerdata.keys())
-values = list(Winnerdata.values())
+names = list(champs.keys())
+values = list(champs.values())
 
 # Plot stacked bar graph
 fig_size = plt.rcParams["figure.figsize"]
