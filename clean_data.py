@@ -40,5 +40,14 @@ matches["Away Team Name"] = matches["Away Team Name"].str.replace("Germany FR","
 # Remove all missing values
 matches = matches.dropna(how='all')
 
+# Create Winner Column
+matches['Winner'] = matches['Home Team Name']
+matches['Winner'][matches['Home Team Goals'] > matches['Away Team Goals']] = matches['Home Team Name']
+matches['Winner'][matches['Home Team Goals'] < matches['Away Team Goals']] = matches['Away Team Name']
+matches['Winner'][matches['Home Team Goals'] == matches['Away Team Goals']] = 'Draw'
+print(matches[['Home Team Name','Home Team Goals','Away Team Name','Away Team Goals','Winner']].head())
+all_draws = len(matches[matches['Winner']=='Draw'])
+print('Total number of Draws: {}'.format(all_draws))
+
 # Create new clean csv
 matches.to_csv('./data/CleanMatches.csv')
