@@ -49,5 +49,7 @@ print(matches[['Home Team Name','Home Team Goals','Away Team Name','Away Team Go
 all_draws = len(matches[matches['Winner']=='Draw'])
 print('Total number of Draws: {}'.format(all_draws))
 
+# df.groupby('Year')
+
 # Create new clean csv
-matches.to_csv('./data/CleanMatches.csv')
+# matches.to_csv('./data/CleanMatches.csv')
