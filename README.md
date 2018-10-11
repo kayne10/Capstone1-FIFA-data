@@ -55,9 +55,10 @@ After combining these correlating features with all wins, I trained a Linear Reg
 <img src="images/2014comparisons.png" height="500" />
 
 My predictions are very similar with the true number of wins. The two lines are very close.
-
+### Scores
 SKLearn R2 score: 0.8516 <br />
 OLS R2 score: 0.896 <br />
-Ridge Model MSE: 0.669  <!-- Maybe not include this?-->
+Ridge R2 score: 0.876 <br />
+Lasso R2 score: 0.885
 
 Based off these predictions, I would take the two tallest values as the teams who advanced to the 2014 World Cup championship, which appears to be Germany and Netherlands with Germany winning it all(Blue line). In reality, the two teams in the championship was Germany and Argentina, but Germany did win it all! Argentina was not too far off in my predictions, however. They tied with Netherlands with a number of 7 wins. In conclusion, it looks like my prediction correctly guessed that Germany would take home the World Cup in 2014.

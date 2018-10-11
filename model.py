@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import statsmodels.formula.api as smf
 import statsmodels.api as sm
-from sklearn.linear_model import LinearRegression, Ridge
+from sklearn.linear_model import LinearRegression, RidgeCV, LassoCV
 from sklearn.metrics import r2_score, mean_squared_error
 from sklearn.model_selection import KFold
 import seaborn as sns
@@ -17,23 +17,21 @@ def create_linear_model(X_train,X_test,y_train,y_test):
     pred_test = lin.predict(X_test)
     return (pred_train, pred_test)
 
-def crossVal(x_train, y_train, n_folds=5):
-    kf = KFold(n_splits=n_folds)
-    for idx, (train, test) in enumerate(kf.split(x_train)):
-        lin = LinearRegression()
-        lin.fit(x_train[train], y_train[train])
-        pred_train = lin.predict(x_train[train])
-        pred_test = lin.predict(x_train[test])
-        return (pred_train, pred_test)
+def create_lasso_model(X, y, cv=10):
+  alphas = np.logspace(-3,3,50)
+  lasso = LassoCV(alphas=alphas, cv=cv).fit(X,y)
+  print(f'Lasso train R^2: {lasso.score(X,y)}, alpha: {lasso.alpha_}')
+  return lasso
 
+def create_ridge_model(X, y, cv=10):
+  alphas = np.logspace(-3,3,50)
+  ridge = RidgeCV(alphas=alphas, cv=cv).fit(X,y)
+  print(f'Ridge train R^2: {ridge.score(X,y)}, alpha: {ridge.alpha_}')
+  return ridge
 
 def test_accuracy(y_test, y_pred):
     return r2_score(y_test, y_pred)
 
-def create_ridge_model(alpha, model, X_train, y_train):
-    ridge = model(alpha=alpha).fit(X_train,y_train)
-    y_pred = ridge.predict(X_train)
-    return (y_pred, ridge.coef_)
 
 def plot_scatters_with_bestfit(df):
     y = df['All_Wins']
@@ -96,10 +94,11 @@ if __name__ == '__main__':
     # residuals = model.outlier_test()['student_resid']
     # sm.graphics.qqplot(residuals, line='45', fit=True)
 
-    # Ridge model
-    y_pred, coefs = create_ridge_model(0.5,Ridge,X_train,y_train)
-    MSE = mean_squared_error(y_train,y_pred)
-    print("Ridge model MSE: {}\n with coefficients of: {}".format(MSE,coefs))
+    # Ridge and Lasso models and predictions
+    ridge = create_ridge_model(X_train,y_train)
+    lasso = create_lasso_model(X_train,y_train)
+    ridge_pred = ridge.predict(X_test)
+    lasso_pred = lasso.predict(X_test)
 
     # plots
     plot_scatters_with_bestfit(training) # 2006 and 2010
