@@ -43,7 +43,7 @@ Each dot lies a team and their fit for Goals Scored and Avg Goals versus All Win
 Here, I'm dealing with 64 matches in 2014 instead of 128 you can see in the previous image.
 
 Target Value: Number of Wins
-
+<br />
 Features:
 - All Goals Scored
 - Avg Goals Scored Per Game
@@ -56,7 +56,8 @@ After combining these correlating features with all wins, I trained a Linear Reg
 
 My predictions are very similar with the true number of wins. The two lines are very close.
 
-R2 score: 0.8516 <br />
+SKLearn R2 score: 0.8516 <br />
+OLS R2 score: 896 <br />
 Ridge Model MSE: 0.669  <!-- Maybe not include this?-->
 
 Based off these predictions, I would take the two tallest values as the teams who make it to the 2014 World Cup championship, which appears to be Germany and Netherlands with Germany winning it all(Blue line). In reality, the two teams in the championship was Germany and Argentina, but Germany did win it all! Argentina was not too far off in my predictions, however. They tied with Netherlands with a number of 7 wins. In conclusion, it looks like my prediction correctly guessed that Germany would take home the World Cup in 2014.

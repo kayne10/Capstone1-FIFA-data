@@ -8,7 +8,7 @@ from sklearn.linear_model import LinearRegression, Ridge
 from sklearn.metrics import r2_score, mean_squared_error
 from sklearn.model_selection import KFold
 import seaborn as sns
-
+sns.set()
 
 def create_linear_model(X_train,X_test,y_train,y_test):
     lin = LinearRegression()
@@ -61,13 +61,12 @@ def plot_scatters_with_bestfit(df):
     ax2.set_xlabel('Average Goals per Game')
     ax2.set_ylabel('Wins')
     ax2.set_title('Teams with Avg Goals vs. All Wins')
-    # plt.savefig('./images/2014stats.png')
 
 def plot_true_v_predicted(x,y_test,y_prediction):
     fig = plt.figure(figsize=(10,10))
     ax = fig.add_subplot(111)
-    ax.plot(test['Team'],y_test, color='tomato', label='True')
-    ax.plot(test['Team'],test_predictions, color='royalblue',label='Predicted')
+    ax.plot(x,y_test, color='tomato', label='True')
+    ax.plot(x,test_predictions, color='royalblue',label='Predicted')
     plt.xticks(rotation=90)
     ax.set_ylabel('Wins')
     ax.set_title('2014 World Cup True Wins vs. Predicted Wins')
@@ -110,7 +109,11 @@ if __name__ == '__main__':
 
     # R2 Score for sklearn and ols
     print("LinearRegression R2 score: {}".format(test_accuracy(y_test,test_predictions)))
-    # print(model.summary())
+    print(model.summary())
 
-    # find teams with most win predictions as winner of 2014s world cup
-    print("Predicted Winner: {}\nActual Winner: {}".format(max(test_predictions),max(y_test)))
+    # find team with highest wins prediction as winner of 2014s world cup
+    p_winner_index = np.argmax(test_predictions)
+    a_winner_index = np.argmax(y_test)
+    p_winner = test.iloc[p_winner_index,0]
+    a_winner = test.iloc[a_winner_index,0]
+    print("Predicted Winner: {}\nActual Winner: {}".format(p_winner,a_winner))
