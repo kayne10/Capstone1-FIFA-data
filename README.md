@@ -30,7 +30,7 @@ Before, my data columns looked like this.
 After data manipulation, I transformed the columns to look like this.
 <img src="images/ManipulatedData.png" />
 
-These stats would make a good representation for my features of a Linear Regression model. I splitted the data in 2 sets where one represents years 2006 and 2010 and the other represents only 2014.
+These results would make a good representation for my features of a Linear Regression model. I splitted the data in 2 sets where one represents years 2006 and 2010 and the other represents only 2014.
 
 Some of these features had strong linear relationships with number of wins. Here are a couple examples in years 2006 and 2010.
 
@@ -40,9 +40,10 @@ Each dot lies a team and their fit for Goals Scored and Avg Goals versus All Win
 
 <img src="images/2014stats.png" height="400" />
 
-Dealing with 64 matches in 2014 instead of 128 you can see in the previous image.
+Here, I'm dealing with 64 matches in 2014 instead of 128 you can see in the previous image.
 
 Target Value: Number of Wins
+
 Features:
 - All Goals Scored
 - Avg Goals Scored Per Game
