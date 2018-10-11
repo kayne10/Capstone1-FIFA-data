@@ -52,7 +52,7 @@ Features:
 - Draws
 
 After combining these correlating features with all wins, I trained a Linear Regression model with years 2006 and 2010 in order to predict the number of wins for each team in 2014. Here is plot that shows my predictions and the true values of number of wins.
-<img src="images/2014comparisons.png" />
+<img src="images/2014comparisons.png" height="500" />
 
 My predictions are very similar with the true number of wins. The two lines are very close.
 
