@@ -52,4 +52,4 @@ print('Total number of Draws: {}'.format(all_draws))
 # df.groupby('Year')
 
 # Create new clean csv
-# matches.to_csv('./data/CleanMatches.csv')
+matches.to_csv('./data/CleanMatches.csv')
